@@ -14,4 +14,27 @@ For each node pair in the testing set, your model should predict whether there i
 
 The evaluation metric for this competition is Mean F1-Score. The F1 score measures accuracy using precision and recall. Precision is the ratio of true positives (tp) to all predicted positives (tp + fp). Recall is the ratio of true positives to all actual positives (tp + fn). 
 
-## 
+## Features engineering 
+
+**"overlap_title"** : the intersection between titles of two differnt papers, it's the number of shared words between titles.
+
+**"temp_diff"** : the temporal difference between the two papers.
+
+**"comm_auth"** : the number of shared authors between papers.
+
+**"overlap_abstract"** : the intersection between abstracts of two differnt papers, it's the number of shared words between abstracts. 
+
+**"abstract_diff"** : I used the word2vect to encode the abstracts and then calculate the cosine_similarity between the two encoded abstracts. 
+
+## Training:
+
+I used the SVM classifier, SVC of sklearn and used GridSearch cross validation to find the best parameters.
+
+
+## Validation:
+
+By doing so i've got easily an F1 score of 82%.
+
+## Discussion:
+
+Another aspect that may be useful for features engineering is the reprasentation of the citation graph as the network. We can use the distance between papers in the network as feature, also the average distance between authors. I think that will have a good impact on the quality of the prediction since in reality there is scientific communities. Unsupervised learning may be used to detect communities in the graph and add a categorical feature indicating to which community belong the paper or the authors. 
